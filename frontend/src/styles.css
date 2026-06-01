@@ -23,6 +23,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 12% 10%, rgba(192, 125, 44, 0.26), transparent 26rem),
     radial-gradient(circle at 90% 16%, rgba(35, 110, 98, 0.18), transparent 28rem),
@@ -41,7 +42,7 @@ button {
 
 .app-shell {
   display: grid;
-  grid-template-columns: 310px 1fr;
+  grid-template-columns: 380px minmax(0, 1fr);
   min-height: 100vh;
 }
 
@@ -53,6 +54,7 @@ button {
   top: 0;
   height: 100vh;
   overflow: auto;
+  min-width: 0;
 }
 
 .brand-block {
@@ -86,9 +88,10 @@ h2 {
 }
 
 h1 {
-  font-size: clamp(2.4rem, 5vw, 4.5rem);
-  line-height: 0.88;
+  font-size: clamp(2.3rem, 2.8vw, 3rem);
+  line-height: 0.92;
   margin: 18px 0;
+  overflow-wrap: anywhere;
 }
 
 h2 {
@@ -105,6 +108,10 @@ h3 {
 .brand-block p,
 .panel p {
   color: var(--muted);
+}
+
+.brand-block p {
+  line-height: 1.45;
 }
 
 .nav-list {
@@ -143,6 +150,7 @@ h3 {
 .workspace {
   padding: 34px;
   min-width: 0;
+  overflow: hidden;
 }
 
 .topbar {
@@ -210,6 +218,7 @@ h3 {
 .panel {
   background: var(--panel);
   padding: 24px;
+  min-width: 0;
 }
 
 .metric-card {
@@ -327,7 +336,9 @@ select:focus {
 }
 
 .responsive-table {
+  max-width: 100%;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
 }
 
 table {
@@ -414,6 +425,23 @@ th {
   .sidebar {
     height: auto;
     position: static;
+    padding-bottom: 26px;
+  }
+
+  .brand-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(180px, 0.9fr);
+    gap: 18px;
+    align-items: end;
+  }
+
+  .brand-block h1 {
+    font-size: clamp(2rem, 7vw, 4rem);
+    margin-bottom: 0;
+  }
+
+  .brand-block p {
+    margin-bottom: 0;
   }
 
   .nav-list {
@@ -430,9 +458,32 @@ th {
 }
 
 @media (max-width: 680px) {
+  body {
+    background: #efe7d6;
+  }
+
   .sidebar,
   .workspace {
-    padding: 18px;
+    padding: 16px;
+  }
+
+  .sidebar {
+    border-radius: 0 0 28px 28px;
+  }
+
+  .brand-block {
+    grid-template-columns: 1fr;
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .brand-block h1 {
+    font-size: clamp(2.05rem, 12vw, 3rem);
+    line-height: 0.9;
+  }
+
+  .brand-block p {
+    max-width: 24rem;
   }
 
   .topbar,
@@ -446,11 +497,29 @@ th {
     grid-template-columns: 1fr;
   }
 
+  .nav-list {
+    gap: 8px;
+    margin-top: 14px;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 13vw, 3.6rem);
+  }
+
+  .topbar {
+    margin-bottom: 18px;
+  }
+
+  .panel {
+    border-radius: 22px;
+    padding: 18px;
+  }
+
   .order-line {
     grid-template-columns: 1fr;
   }
 
   table {
-    min-width: 620px;
+    min-width: 560px;
   }
 }
