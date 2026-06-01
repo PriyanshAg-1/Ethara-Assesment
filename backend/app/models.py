@@ -1,7 +1,7 @@
 from datetime import datetime
 from decimal import Decimal
 
-from sqlalchemy import DateTime, ForeignKey, Integer, Numeric, String, func
+from sqlalchemy import CheckConstraint, DateTime, ForeignKey, Integer, Numeric, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
@@ -9,6 +9,10 @@ from app.database import Base
 
 class Product(Base):
     __tablename__ = "products"
+    __table_args__ = (
+        CheckConstraint("price > 0", name="ck_products_price_positive"),
+        CheckConstraint("quantity_in_stock >= 0", name="ck_products_quantity_non_negative"),
+    )
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     name: Mapped[str] = mapped_column(String(120), nullable=False)
@@ -40,6 +44,7 @@ class Customer(Base):
 
 class Order(Base):
     __tablename__ = "orders"
+    __table_args__ = (CheckConstraint("total_amount >= 0", name="ck_orders_total_non_negative"),)
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     customer_id: Mapped[int] = mapped_column(ForeignKey("customers.id", ondelete="CASCADE"), nullable=False)
@@ -54,6 +59,11 @@ class Order(Base):
 
 class OrderItem(Base):
     __tablename__ = "order_items"
+    __table_args__ = (
+        CheckConstraint("quantity > 0", name="ck_order_items_quantity_positive"),
+        CheckConstraint("unit_price > 0", name="ck_order_items_unit_price_positive"),
+        CheckConstraint("line_total > 0", name="ck_order_items_line_total_positive"),
+    )
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     order_id: Mapped[int] = mapped_column(ForeignKey("orders.id", ondelete="CASCADE"), nullable=False)
