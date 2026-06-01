@@ -26,6 +26,9 @@ yarn-error.log*
 .DS_Store
 .idea/
 .vscode/
+.vercel/
+.railway/
+frontend/.vercel/
 
 # Existing local agent files are not part of the assessment project
 .agents/
