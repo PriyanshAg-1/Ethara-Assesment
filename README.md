@@ -203,8 +203,8 @@ Frontend on Vercel:
 Fill these in after publishing and deploying.
 
 ```text
-GitHub repository: <repository-url>
-Backend Docker Hub image: <dockerhub-image-url>
-Live frontend URL: <frontend-url>
-Live backend API URL: <backend-url>
+GitHub repository: https://github.com/PriyanshAg-1/Ethara-Assesment
+Backend Docker Hub image: https://hub.docker.com/r/priyanshag01/inventory-api
+Live frontend URL: https://frontend-nu-virid-pgzrotj8m2.vercel.app
+Live backend API URL: https://backend-production-7dac.up.railway.app
 ```
