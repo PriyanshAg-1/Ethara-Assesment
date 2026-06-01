@@ -184,7 +184,7 @@ Backend on Render:
 
 1. Create a PostgreSQL database on Render.
 2. Create a Web Service from this repository.
-3. Use Docker deployment with `backend/Dockerfile` or deploy from the backend directory.
+3. Use the included `render.yaml` blueprint or Docker deployment with `backend/Dockerfile`.
 4. Set `DATABASE_URL` to the Render PostgreSQL internal connection string.
 5. Set `BACKEND_CORS_ORIGINS` to the deployed frontend URL.
 6. Confirm `https://your-backend-url/health` returns `{"status":"ok"}`.
