@@ -5,10 +5,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    database_url: str = Field(
-        "postgresql+psycopg://inventory_user:inventory_password@localhost:5432/inventory_db",
-        validation_alias="DATABASE_URL",
-    )
+    database_url: str = Field(..., validation_alias="DATABASE_URL")
     backend_cors_origins: str = Field(
         "http://localhost:5173,http://localhost:8080",
         validation_alias="BACKEND_CORS_ORIGINS",
